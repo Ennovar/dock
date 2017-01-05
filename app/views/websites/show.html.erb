@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @website.title %>
+</p>
+
+<p>
+  <strong>Image name:</strong>
+  <%= @website.image_name %>
+</p>
+<div>
+  <p>Stats</p>
+  <code>
+    <%= @website.stats %>
+  </code>
+</div>
+
+<%= link_to 'Run', run_website_path(@website), method: :put, class: 'btn btn-success' %>
+<%= link_to 'Stop', stop_website_path(@website), method: :put, class: 'btn btn-danger'%>
+<br/>
+<%= link_to 'Edit', edit_website_path(@website) %> |
+<%= link_to 'Back', websites_path %>

@@ -1,0 +1,64 @@
+<%= form_for(website) do |f| %>
+  <% if website.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(website.errors.count, "error") %> prohibited this website from being saved:</h2>
+
+      <ul>
+      <% website.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image_name %>
+    <%= f.text_area :image_name %>
+  </div>
+
+  <div>
+    <%= f.label :run_command %>
+    <%= f.text_field :run_command %>
+  </div>
+
+  <div>
+    <%= f.label :run_options %>
+    <%= f.text_area :run_options %>
+  </div>
+  <div>
+    <code>
+    </code>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "jsoneditor" %>
+
+<script type="text/javascript">
+function installJsonEditor(tag) {
+  var container = document.getElementById(tag);
+  var options = {};
+  var editor = new JSONEditor(container, options);
+
+  var json = {
+    "Array": [1, 2, 3],
+    "Boolean": true,
+    "Null": null,
+    "Number": 123,
+    "Object": {"a": "b", "c": "d"},
+    "String": "Hello World"
+  };
+  editor.set(json);
+  var json = editor.get();
+}
+installJsonEditor('website_run_options')
+</script>
+
